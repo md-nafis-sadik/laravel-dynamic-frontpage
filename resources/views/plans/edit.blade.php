@@ -30,20 +30,42 @@
             </div>
 
             <div class="mb-4">
-                <label for="icon" class="block text-sm font-medium text-gray-700">Icon</label>
-                <input type="text" name="icon" id="icon" value="{{ $plan->icon }}"
-                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                @error('icon')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+    <label for="icon" class="block text-sm font-medium text-gray-700">Icon</label>
+    <select name="icon" id="icon"
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+        <option value="bi bi-box" {{ $plan->icon == 'bi bi-box' ? 'selected' : '' }}>Box</option>
+        <option value="bi bi-send" {{ $plan->icon == 'bi bi-send' ? 'selected' : '' }}>Send</option>
+        <option value="bi bi-airplane" {{ $plan->icon == 'bi bi-airplane' ? 'selected' : '' }}>Airplane</option>
+        <option value="bi bi-rocket" {{ $plan->icon == 'bi bi-rocket' ? 'selected' : '' }}>Rocket</option>
+    </select>
+    @error('icon')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
+
+
+<div class="mb-4">
+    <label for="color" class="block text-sm font-medium text-gray-700">Color</label>
+    <select name="color" id="color"
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+        <option value="#20c997" {{ $plan->color == '#20c997' ? 'selected' : '' }}>Green (#20c997)</option>
+        <option value="#0dcaf0" {{ $plan->color == '#0dcaf0' ? 'selected' : '' }}>Cyan (#0dcaf0)</option>
+        <option value="#fd7e14" {{ $plan->color == '#fd7e14' ? 'selected' : '' }}>Orange (#fd7e14)</option>
+        <option value="#0d6efd" {{ $plan->color == '#0d6efd' ? 'selected' : '' }}>Blue (#0d6efd)</option>
+    </select>
+    @error('color')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
+
+
 
             <div class="mb-4">
                 <label for="features" class="block text-sm font-medium text-gray-700">Features</label>
                 <div id="features-wrapper">
                     @foreach(json_decode($plan->features) as $feature)
                         <div class="feature-input mb-2 flex">
-                            <input type="text" name="features[]" class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                            <input type="text" name="features[]" maxlength="100" class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                                 value="{{ $feature }}" placeholder="Enter a feature" required>
                             <button type="button" class="ml-2 bg-red-500 text-white p-2 rounded-md remove-feature">Remove</button>
                         </div>
@@ -113,6 +135,19 @@
                 e.target.closest('.feature-input').remove();
             }
         });
+        document.getElementById('features-wrapper').addEventListener('input', function (e) {
+    if (e.target.name === 'features[]') {
+        const maxLength = 100;
+        const currentLength = e.target.value.length;
+
+        if (currentLength > maxLength) {
+            e.target.value = e.target.value.substring(0, maxLength); // Truncate to 100 characters
+            alert('Feature description cannot exceed 100 characters.');
+        }
+    }
+});
+
+
     </script>
 
 </x-app-layout>

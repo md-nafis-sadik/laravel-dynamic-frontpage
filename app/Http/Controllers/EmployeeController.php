@@ -10,12 +10,12 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::latest()->get();
-        return view('planss.index', compact('plans'));
+        return view('employees.index', compact('employees'));
     }
 
     public function create()
     {
-        return view('plans.create');
+        return view('employees.create');
     }
 
     public function store(Request $request)

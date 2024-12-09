@@ -24,6 +24,7 @@ class PlanController extends Controller
             'name' => 'required',
             'icon' => 'required',
             'features' => 'required',
+            'color' => 'color',
             'price' => 'required|numeric',
 
         ]);
@@ -32,6 +33,7 @@ class PlanController extends Controller
         Plan::create([
             'name' => $request->name,
             'icon' => $request->icon,
+            'color' => $request->color,
             'features' => json_encode($request->features),  // Storing the array as JSON
             'price' => $request->price,
         ]);
@@ -56,6 +58,7 @@ class PlanController extends Controller
             'name' => 'required',
             'icon' => 'required' ,
             'features' => 'required',
+            'color' => 'required',
             'price' => 'required|numeric',
         ]);
 
@@ -64,6 +67,7 @@ class PlanController extends Controller
         $plan->update([
             'name' => $request->name,
             'icon' => $request->icon,
+            'color' => $request->color,
             'features' => json_encode($request->features),
             'price' => $request->price,
         ]);

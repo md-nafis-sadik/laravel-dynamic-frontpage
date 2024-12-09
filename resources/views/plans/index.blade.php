@@ -26,6 +26,7 @@
                                     <th class="px-4 py-2 text-left">Name</th>
                                     <th class="px-4 py-2 text-left">Price</th>
                                     <th class="px-4 py-2 text-left">Icon</th>
+                                    <th class="px-4 py-2 text-left">Color</th>
                                     <th class="px-4 py-2 text-left">Features</th>
                                     <th class="px-4 py-2 text-left w-[150px]">Actions</th>
                                 </tr>
@@ -38,7 +39,8 @@
 
                                         <td class="px-4 py-2">৳{{ number_format($plan->price, 1) }}</td>
                                         <td class="px-4 py-2">{{ $plan->icon }}</td>
-                                        <td class="px-4 py-2">@foreach (json_decode($plan->features) as $feature)
+                                        <td class="px-4 py-2">{{ $plan->color }}</td>
+                                        <td class="px-4 py-2 text-wrap">@foreach (json_decode($plan->features) as $feature)
     <p>{{ $feature }}</p>
 @endforeach
 </td>

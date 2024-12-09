@@ -9,5 +9,5 @@ class Plan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price', 'icon', 'features'];
+    protected $fillable = ['name', 'price', 'icon', 'features', 'color'];
 }

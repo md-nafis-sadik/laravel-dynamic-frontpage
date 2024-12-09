@@ -71,7 +71,7 @@
       </nav>
       @if (Route::has('login'))
         @auth
-          <a class="btn-getstarted flex-md-shrink-0" href="{{ url('/home') }}">Home</a>
+          <a class="btn-getstarted flex-md-shrink-0" href="{{ url('/dashboard') }}">Dashboard</a>
         @else
           <a class="btn-getstarted flex-md-shrink-0" href="{{ route('login') }}">Login</a>
           <a class="btn-getstarted flex-md-shrink-0" href="{{ route('register') }}" style="margin-left:10px;">Register</a>
@@ -462,13 +462,13 @@
             @foreach($plans as $plan)
             <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                 <div class="pricing-tem">
-                    <h3 style="color: #20c997;">{{ $plan->name }}</h3>
+                    <h3 style="color: {{$plan->color}};">{{ $plan->name }}</h3>
                     <div class="price"><sup>$</sup>{{ $plan->price }}<span> / mo</span></div>
                     <div class="icon">
-                        <i class="{{ $plan->icon }}" style="color: #20c997;"></i>
+                        <i class="{{ $plan->icon }}" style="color: {{$plan->color}};"></i>
                     </div>
                     @foreach (json_decode($plan->features) as $feature)
-    <p>{{ $feature }}</p>
+    <p  class="text-break">{{ $feature }}</p>
 @endforeach
 
                     <a href="#" class="btn-buy">Buy Now</a>
